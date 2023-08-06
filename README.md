@@ -59,6 +59,16 @@ pnpm run preview
 # yarn
 yarn preview
 ```
+## Firebase hosting
+
+# Sign in to Google
+firebase login
+
+# Initiate your project
+firebase init
+
+# deploy your web app
+firebase deploy
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 # nuxt-template

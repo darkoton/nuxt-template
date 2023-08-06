@@ -8,6 +8,7 @@
   </div>
 </template>
 
-<style lang="scss">
-@use "~/assets/style/main.scss";
+<style>
+.plug {
+}
 </style>

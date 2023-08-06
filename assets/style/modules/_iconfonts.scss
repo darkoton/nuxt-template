@@ -1,19 +1,20 @@
 @font-face {
-  font-family: 'iconfonts';
-  src: url('../iconfonts/iconfonts.eot?lhqpxj');
-  src: url('../iconfonts/iconfonts.eot?lhqpxj#iefix') format('embedded-opentype'),
-    url('../iconfonts/iconfonts.ttf?lhqpxj') format('truetype'),
-    url('../iconfonts/iconfonts.woff?lhqpxj') format('woff'),
-    url('../iconfonts/iconfonts.svg?lhqpxj#iconfonts') format('svg');
+  font-family: 'icomoon';
+    src:  url('@/assets/iconfonts/icomoon.eot?1915h7');
+    src:  url('@/assets/iconfonts/icomoon.eot?1915h7#iefix') format('embedded-opentype'),
+      url('@/assets/iconfonts/icomoon.ttf?1915h7') format('truetype'),
+      url('@/assets/iconfonts/icomoon.woff?1915h7') format('woff'),
+      url('@/assets/iconfonts/icomoon.svg?1915h7#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="_icon-"]:before,
-[class*=" _icon-"]:before {
+
+
+[class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'iconfonts' !important;
+  font-family: 'icomoon' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -27,3 +28,28 @@
 }
 
 //< " КЛАССЫ " >=============================================================================================================>//
+
+.icon-settings:before {
+  content: "\e907";
+}
+.icon-notification:before {
+  content: "\e906";
+}
+.icon-bookmark:before {
+  content: "\e900";
+}
+.icon-category:before {
+  content: "\e901";
+}
+.icon-chat:before {
+  content: "\e902";
+}
+.icon-home:before {
+  content: "\e903";
+}
+.icon-move:before {
+  content: "\e904";
+}
+.icon-plus:before {
+  content: "\e905";
+}
