@@ -1,4 +1,32 @@
 .auth{
+
+  flex: 1 1 auto;
+
+  &__wrapper,
+  &__container,
+  &__body {
+    height: 100%;
+  }
+  &__body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__main {
+    width: 100%;
+    max-width: 850px;
+    // border-radius: 40px;
+    // background: #c0f8d6;
+    height: 100%;
+    max-height: 675px;
+    position: relative;
+
+    &-body {
+      height: 100%;
+    }
+  }
+
+
   &__action-login, &__action-signup{
     display:flex;
     flex-direction:column;
@@ -10,22 +38,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    transition: all 0.3s ease ;
-  }
-
-  &__action-login{
-    z-index: 2;
-    transform: rotateY(0deg);
-    backface-visibility: hidden;
-  }
-
-  &__action-signup{
-    transform: rotateY(-180deg);
+    transition: all 0.3s ease;
   }
 
   &__action{
     @include adaptiv-value(padding-top, 40, 20, 1);
     @include adaptiv-value(padding-bottom, 32, 16, 1);
+    position: relative;
   }
   &__logo{
     @include adaptiv-value(margin-bottom, 27, 15, 1);
@@ -45,7 +64,7 @@
       display: inline-block;
       border-radius: 8px;
 
-      &.active{
+      &.router-link-active{
         background: #00DD83;
       }
 
@@ -86,6 +105,12 @@
     align-items: center;
     @include adaptiv-value(padding-bottom, 3, 2, 1);
     posotion: relative;
+    transition: all 0.3s ease 0s;
+
+
+    &.error{
+      border-color: rgb(255, 119, 119);
+    }
 
     label,
     input{
@@ -114,9 +139,12 @@
       background-color: transparent;
       position: relative;
       z-index: 2;
+      @include adaptiv-value(margin-left, 5, 3, 1);
+      width: 100%;
     }
 
-    input:focus ~ label{
+    input:focus ~ label,
+    input:valid ~ label{
       bottom: calc(100% + 10px);
       font-size: 12px;
       color: #319C5C;
@@ -126,6 +154,8 @@
 
   &__input-box{
     position: relative;
+    width: 100%;
+    @include adaptiv-value(padding-right, 15, 8, 1);
   }
   &__checkbox-body{
     display: flex;
@@ -134,17 +164,6 @@
     @include adaptiv-font(20, 16);
     letter-spacing: 0.2px;
     cursor: pointer;
-
-    @media (any-hover:hover){
-      cursor: pointer;
-      transition: all 0.3s ease 0s;
-      &:hover{
-        & .auth__checkbox::after{
-          opacity: 1;
-          z-index: 0;
-        }
-      }
-    }
   }
   &__checkbox{
     width: 23px;
@@ -152,11 +171,13 @@
     border-radius: 7px;
     border: 2px solid #00DD83;
     position: relative;
+    transition: all 0.3s ease 0s;
+
     &::after{
       content: '';
       width: 7px;
       height: 11px;
-      border: 2px solid #00DD83;
+      border: 2px solid #000000;
       border-width: 0 2px 2px 0;
       position: absolute;
       top: 0%;
@@ -166,13 +187,30 @@
       z-index: -1;
       transition: all 0.3s ease 0s;
     }
+
+    &.error{
+      border-color: rgb(255, 87, 87);
+    }
+
     &.active{
+      background: #00DD83;
+
       &::after{
         opacity: 1;
         z-index: 0;
       }
     }
-    
+    @media (any-hover:hover){
+      cursor: pointer;
+      transition: all 0.3s ease 0s;
+      &:hover{
+        background: #00DD83;
+        &::after{
+          opacity: 1;
+          z-index: 0;
+        }
+      }
+    }
   }
 
   &__submit{

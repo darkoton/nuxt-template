@@ -15,8 +15,12 @@
     "nuxt": "^3.6.5"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
     "firebase": "^10.1.0",
     "firebaseui": "^6.1.0",
-    "sass": "^1.64.2"
+    "pinia": "^2.1.6",
+    "sass": "^1.64.2",
+    "vee-validate": "^4.11.1",
+    "yup": "^1.2.0"
   }
 }

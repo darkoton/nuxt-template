@@ -16,8 +16,16 @@ export default defineNuxtConfig({
     }
   },
   modules: [
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
+    '@pinia/nuxt'
   ],
+  imports: {
+    dirs: ['./stores'],
+  },
+
+  pinia: {
+    autoImports: ['defineStore', 'acceptHMRUpdate'],
+  },
   googleFonts: {
     families: {
       // Specify the font families you want to use
@@ -26,5 +34,11 @@ export default defineNuxtConfig({
       'Sarabun:wght@400;700': true,
     },
     display: 'swap', // Optional, improves font loading
+  },
+
+  app: {
+    layoutTransition: { name: 'clear', mode: 'out-in' },
+    pageTransition: { name: 'page', mode: 'out-in' }
+
   },
 })

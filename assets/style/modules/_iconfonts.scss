@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('@/assets/iconfonts/icomoon.eot?ywwcso');
-  src:  url('@/assets/iconfonts/icomoon.eot?ywwcso#iefix') format('embedded-opentype'),
-    url('@/assets/iconfonts/icomoon.ttf?ywwcso') format('truetype'),
-    url('@/assets/iconfonts/icomoon.woff?ywwcso') format('woff'),
-    url('@/assets/iconfonts/icomoon.svg?ywwcso#icomoon') format('svg');
+  src:  url('@/assets/iconfonts/icomoon.eot?k0x7ts');
+  src:  url('@/assets/iconfonts/icomoon.eot?k0x7ts#iefix') format('embedded-opentype'),
+    url('@/assets/iconfonts/icomoon.ttf?k0x7ts') format('truetype'),
+    url('@/assets/iconfonts/icomoon.woff?k0x7ts') format('woff'),
+    url('@/assets/iconfonts/icomoon.svg?k0x7ts#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -27,6 +27,9 @@
 
 //< " КЛАССЫ " >=============================================================================================================>//
 
+.icon-profile:before {
+  content: "\e90b";
+}
 .icon-lock:before {
   content: "\e90a";
 }
