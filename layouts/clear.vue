@@ -1,6 +1,5 @@
 <template>
-  <div class="default">
-    <the-sidebar></the-sidebar>
+  <div class="clear">
     <slot />
   </div>
 </template>
@@ -9,7 +8,7 @@
 </script>
 
 <style lang="scss" scoped>
-.default {
+.clear {
   display: flex;
   flex: 1 1 auto;
 }

@@ -8,7 +8,19 @@
   </div>
 </template>
 
-<style>
-.plug {
-}
-</style>
+<script setup>
+import { ref, onMounted } from "vue";
+const router = useRouter();
+
+let isAuth = ref(false);
+
+onMounted(() => {
+  isAuth = localStorage.isAuth ? Boolean(localStorage.isAuth) : false;
+  if (!isAuth) {
+    router.push("/authentication");
+  }
+});
+</script>
+
+
+
