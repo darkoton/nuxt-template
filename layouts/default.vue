@@ -1,16 +1,5 @@
 <template>
-  <div class="default">
-    <the-sidebar></the-sidebar>
-    <slot />
-  </div>
+  <the-header></the-header>
+  <slot />
+  <the-footer></the-footer>
 </template>
-
-<script lang="ts" setup>
-</script>
-
-<style lang="scss" scoped>
-.default {
-  display: flex;
-  flex: 1 1 auto;
-}
-</style>
