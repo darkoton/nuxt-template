@@ -13,9 +13,10 @@ function onDatabase(key: string): void {
   });
 }
 
-function writeUserData(userUid: string, name: string) {
-  set(ref(db, 'users/' + userUid + '/info'), {
-    name
+function writeUserData({ uid, name, photoURL }) {
+  set(ref(db, 'users/' + uid + '/info'), {
+    name,
+    photoURL
   });
 }
 

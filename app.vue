@@ -18,12 +18,9 @@ const router = useRouter();
 const route = useRoute();
 const store = useStore();
 
-stateChanged().then((user) => {
-  if (user) {
-    store.user = user;
-  }
-  // console.log(r);
-});
+// stateChanged().then((user) => {
+//   console.log(user);
+// });
 
 onMounted(() => {
   // if (!store.user && route.name != "logIn" && route.name != "signUp") {

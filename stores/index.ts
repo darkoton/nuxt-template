@@ -23,6 +23,9 @@ export const useStore = defineStore('main', {
       try {
         const user = await signInGoogle();
         this.user = user
+
+        console.log(user);
+
         return user
       } catch (e) {
         throw e;

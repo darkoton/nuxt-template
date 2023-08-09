@@ -11,7 +11,8 @@ async function createUser({ email, password, name }) {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password)
     const user = userCredential.user;
     const uid = user.uid
-    writeUserData(uid, name)
+    const data = { name, uid, photoURL: user.photoURL }
+    writeUserData(data)
     return user
 
   } catch (e) {

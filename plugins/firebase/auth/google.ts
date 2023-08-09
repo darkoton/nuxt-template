@@ -11,7 +11,9 @@ async function signInGoogle() {
 
     const result = await signInWithPopup(auth, provider)
     const user = result.user;
-    writeUserData(user.uid, user.displayName)
+    const data = { name: user.displayName, uid: user.uid, photoURL: user.photoURL }
+
+    writeUserData(data)
     return user
 
   } catch (e) {

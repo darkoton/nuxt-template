@@ -1,9 +1,3 @@
-<script setup lang="ts">
-definePageMeta({
-  middleware: "auth",
-});
-</script>
-
 <template>
   <div class="home">
     <div class="home__wrapper">
@@ -22,7 +16,7 @@ definePageMeta({
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 definePageMeta({
   middleware: "auth",
 });
