@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-const store = useMainStore();
+const store = useStore();
 </script>
 
 <style lang="scss" scoped>

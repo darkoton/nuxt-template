@@ -45,10 +45,25 @@
                       name="email"
                       id="email"
                       class="auth__input"
-                      v-model="email"
+                      v-model="formData.email"
                       required
                     />
                     <label for="email">Email</label>
+                  </div>
+                </div>
+
+                <div class="auth__input-body" :class="{ error: errors.name }">
+                  <i class="auth__icon icon-profile"></i>
+                  <div class="auth__input-box">
+                    <Field
+                      type="text"
+                      name="name"
+                      id="name"
+                      class="auth__input"
+                      v-model="formData.name"
+                      required
+                    />
+                    <label for="name">Name</label>
                   </div>
                 </div>
 
@@ -63,7 +78,7 @@
                       name="password"
                       id="pass"
                       class="auth__input"
-                      v-model="pass"
+                      v-model="formData.password"
                       required
                     />
                     <label for="pass">Password</label>
@@ -80,7 +95,7 @@
                       type="password"
                       id="confirmPass"
                       class="auth__input"
-                      v-model="confirmPass"
+                      v-model="formData.confirmPass"
                       name="confirmPassword"
                       required
                     />
@@ -95,13 +110,13 @@
                 <div
                   class="auth__checkbox-body"
                   @click="
-                    checkbox = !checkbox;
+                    formData.checkbox = !formData.checkbox;
                     checkboxError = false;
                   "
                 >
                   <div
                     class="auth__checkbox"
-                    :class="{ active: checkbox, error: checkboxError }"
+                    :class="{ active: formData.checkbox, error: checkboxError }"
                   ></div>
                   <span>Confirm</span>
                 </div>
@@ -131,53 +146,43 @@ definePageMeta({
 const schema = yup.object({
   email: yup.string().required().email(),
   password: yup.string().required().min(8),
+  name: yup.string().required(),
   confirmPassword: yup.string().required().min(8),
 });
 
-const store = useMainStore();
+const store = useStore();
 const router = useRouter();
 
-const validConfirmPass = computed(() => pass.value != confirmPass.value);
+const validConfirmPass = computed(
+  () => formData.value.password != formData.value.confirmPass
+);
 
-const email = ref("");
-const name = ref("");
-const pass = ref("");
-const confirmPass = ref("");
-const checkbox = ref(false);
+const formData = ref({
+  email: "",
+  name: "",
+  password: "",
+  confirmPass: "",
+  checkbox: false,
+});
 const checkboxError = ref(false);
 const error = ref(false);
 
-function reset() {
-  setTimeout(() => {
-    email.value = name.value = pass.value = confirmPass.value = "";
-    checkbox.value = false;
-    checkboxError.value = false;
-  }, 500);
-}
-
-function submit() {
-  if (checkbox.value) {
-    signUp(email.value, pass.value)
-      .then((r) => {
-        localStorage.setItem("tokenUser", JSON.stringify(r.accessToken));
-        localStorage.setItem("user", JSON.stringify(r));
-
-        router.push("/");
-      })
-      .catch(() => {
-        store.newMessage("User already registered");
-      });
+async function submit() {
+  if (formData.value.checkbox) {
+    try {
+      await signUp(formData.value);
+      router.push("/");
+    } catch (e) {
+      store.newMessage("User already registered");
+      throw e;
+    }
   } else {
     checkboxError.value = true;
   }
 }
 
-function googleAuth() {
-  signInGoogle().then((r) => {
-    localStorage.setItem("tokenUser", JSON.stringify(r.accessToken));
-    localStorage.setItem("user", JSON.stringify(r));
-
-    router.push("/");
-  });
+async function googleAuth() {
+  await store.google();
+  router.push("/");
 }
 </script>

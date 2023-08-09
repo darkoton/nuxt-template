@@ -1,8 +1,9 @@
 import app from "~/plugins/firebase/firebase"
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, set } from "firebase/database";
+
+const db = getDatabase(app);
 
 function onDatabase(key: string): void {
-  const db = getDatabase(app);
 
   const starCountRef = ref(db, key);
 
@@ -12,4 +13,10 @@ function onDatabase(key: string): void {
   });
 }
 
-export default onDatabase
+function writeUserData(userUid: string, name: string) {
+  set(ref(db, 'users/' + userUid + '/info'), {
+    name
+  });
+}
+
+export { onDatabase, writeUserData }

@@ -18,4 +18,5 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig, "Nlogs");
 
+
 export default app

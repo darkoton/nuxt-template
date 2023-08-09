@@ -3,19 +3,17 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const auth = getAuth(app);
 
-function logIn(email: string, password: string) {
-  return signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
+async function logIn({ email, password }) {
+  try {
 
-      return user
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
+    const userCredential = await signInWithEmailAndPassword(auth, email, password)
+    const user = userCredential.user;
+    return user
+
+  }
+  catch (error) {
+    throw error
+  }
 }
 
 export default logIn

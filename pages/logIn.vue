@@ -46,7 +46,7 @@
                       id="email"
                       required
                       class="auth__input"
-                      v-model="email"
+                      v-model="formData.email"
                     />
                     <label for="email">Email</label>
                   </div>
@@ -61,7 +61,7 @@
                       required
                       id="pass"
                       class="auth__input"
-                      v-model="pss"
+                      v-model="formData.password"
                     />
                     <label for="pass">Password</label>
                   </div>
@@ -84,7 +84,6 @@ import * as yup from "yup";
 
 import "~/assets/style/components/auth.scss";
 import logIn from "~/plugins/firebase/auth/logIn";
-import signInGoogle from "~/plugins/firebase/auth/google";
 
 const schema = yup.object({
   email: yup.string().required().email(),
@@ -96,24 +95,31 @@ definePageMeta({
 });
 
 const router = useRouter();
+const store = useStore();
 
-const email = ref("");
-const pss = ref("");
+const formData = ref({
+  email: "",
+  password: "",
+});
 
-function submit() {
-  logIn(email.value, pss.value).then((r) => {
-    localStorage.setItem("tokenUser", JSON.stringify(r.accessToken));
-    localStorage.setItem("user", JSON.stringify(r));
-
+async function submit() {
+  try {
+    await logIn(formData.value);
     router.push("/");
-  });
+  } catch (e) {
+    if (e.code == "auth/wrong-password") {
+      store.newMessage("Incorrect password");
+    } else if (e.code == "auth/user-not-found") {
+      store.newMessage("Account could not be found");
+    } else {
+      store.newMessage("Oops, something went wrong");
+    }
+    throw e;
+  }
 }
 
-function googleAuth() {
-  signInGoogle().then((r) => {
-    localStorage.setItem("tokenUser", JSON.stringify(r.accessToken));
-    localStorage.setItem("user", JSON.stringify(r));
-    router.push("/");
-  });
+async function googleAuth() {
+  await store.google();
+  router.push("/");
 }
 </script>

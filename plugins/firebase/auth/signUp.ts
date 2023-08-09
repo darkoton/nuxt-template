@@ -1,22 +1,22 @@
 import app from "~/plugins/firebase/firebase"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { ref } from "firebase/database";
+import { writeUserData } from "~/plugins/firebase/realTimeDatabase";
 
 const auth = getAuth(app);
 
-function createUser(email: string, password: string) {
-  return createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      return user
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-      throw error
-    });
+async function createUser({ email, password, name }) {
+  try {
+
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+    const user = userCredential.user;
+    const uid = user.uid
+    writeUserData(uid, name)
+    return user
+
+  } catch (e) {
+    throw e
+  }
 }
 
 export default createUser

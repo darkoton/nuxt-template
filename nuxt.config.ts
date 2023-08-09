@@ -30,8 +30,7 @@ export default defineNuxtConfig({
     families: {
       // Specify the font families you want to use
       // For example:
-      Roboto: true,
-      'Sarabun:wght@400;700': true,
+      'Roboto:wght@400;700': true,
     },
     display: 'swap', // Optional, improves font loading
   },
@@ -41,4 +40,8 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' }
 
   },
+
+  router: {
+    middleware: 'auth', // Применяется ко всем маршрутам
+  }
 })

@@ -12,14 +12,23 @@
 
 
 <script setup>
-import { ref, onMounted } from "vue";
+import stateChanged from "~/plugins/firebase/stateListener";
+
 const router = useRouter();
 const route = useRoute();
+const store = useStore();
+
+stateChanged().then((user) => {
+  if (user) {
+    store.user = user;
+  }
+  // console.log(r);
+});
 
 onMounted(() => {
-  if (!localStorage.user && route.name != "logIn" && route.name != "signUp") {
-    router.push("/logIn");
-  }
+  // if (!store.user && route.name != "logIn" && route.name != "signUp") {
+  //   router.push("/logIn");
+  // }
 });
 </script>
 

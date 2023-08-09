@@ -1,19 +1,33 @@
+
+
 <template>
   <section class="profile">
     <div class="profile__wrapper">
       <div class="profile__body">
-        <div class="profile__user">
+        <div class="profile__user" v-if="store.user">
           <div class="profile__user-left">
             <span class="profile__user-avatar">
               <img src="~/assets/img/profile/avatar.png" alt="" />
             </span>
-            <span class="profile__user-username">Darkotan Tester</span>
+            <span class="profile__user-username">{{
+              store.user.displayName
+                ? store.user.displayName
+                : store.user.email.split("@")[0].charAt(0).toUpperCase() +
+                  store.user.email.split("@")[0].slice(1)
+            }}</span>
           </div>
           <div class="profile__user-right">
             <button
               class="profile__user-notification icon-notification"
             ></button>
-            <button class="profile__user-settinfs icon-settings"></button>
+            <button
+              class="profile__user-settings icon-settings"
+              @click="settingsOpen = !settingsOpen"
+            ></button>
+
+            <ul class="profile__settings" v-show="settingsOpen">
+              <li class="profile__settings-item" @click="signOut">Log Out</li>
+            </ul>
           </div>
         </div>
 
@@ -65,6 +79,19 @@
     </div>
   </section>
 </template>
+
+
+<script lang="ts" setup>
+const store = useStore();
+const router = useRouter();
+
+const settingsOpen = ref(false);
+
+function signOut() {
+  store.signOut();
+  router.push("/login");
+}
+</script>
 
 <style lang="scss" scoped>
 .profile {
@@ -126,6 +153,24 @@
           }
         }
       }
+    }
+  }
+  &__user-right {
+    position: relative;
+  }
+  &__settings {
+    position: absolute;
+    right: 0;
+    top: 150%;
+    padding: 20px;
+    @include adaptiv-padding(8, 5, 15, 10, 1);
+    background: #fff;
+    display: block;
+    white-space: nowrap;
+    border-radius: 5px;
+
+    li {
+      cursor: pointer;
     }
   }
 
