@@ -14,5 +14,23 @@ export default defineNuxtConfig({
         }
       }
     }
-  }
+  },
+  modules: [
+    '@nuxtjs/google-fonts',
+    '@pinia/nuxt'
+  ],
+  imports: {
+    dirs: ['./stores'],
+  },
+  pinia: {
+    autoImports: ['defineStore', 'acceptHMRUpdate'],
+  },
+  googleFonts: {
+    families: {
+      // Specify the font families you want to use
+      // For example:
+      'Roboto:wght@400;500;600;700': true,
+    },
+    display: 'swap', // Optional, improves font loading
+  },
 })

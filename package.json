@@ -10,10 +10,13 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxtjs/google-fonts": "^3.0.2",
     "@types/node": "^18.17.1",
     "nuxt": "^3.6.5"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
+    "pinia": "^2.1.6",
     "sass": "^1.64.2"
   }
 }
