@@ -136,7 +136,7 @@ onMounted(() => {
     height: 100%;
     flex-direction: column;
     @include adaptiv-value(row-gap, 40, 20, 1);
-    @include adaptiv-font(30, 20);
+    @include adaptiv-value(font-size, 30, 20, 1);
     font-weight: bold;
 
     img {

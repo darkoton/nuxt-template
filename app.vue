@@ -13,6 +13,7 @@
         <NuxtPage class="page" />
       </NuxtLayout>
     </div>
+    
   </div>
 </template>
 
